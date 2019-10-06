@@ -163,7 +163,7 @@ local function new(world, index)
 	       txt.previsible = 4
 	       table.insert(object.txts, txt)
 	       txt = {}
-	       txt.text = "\"Some land is no land\""
+	       txt.text = "\"Some bricks are no bricks\""
 	       txt.duration = 4
 	       txt.previsible = 0.1
 	       table.insert(object.txts, txt)
