@@ -41,9 +41,9 @@ local function new()
    effect.crt.feather= 0.02
    effect.crt.distortionFactor = {1, 1.09}
 
-   mode = GameMode.gameplay
-   -- mode = GameMode.menu
-   -- menu = require("mainmenu")()
+   -- mode = GameMode.gameplay
+   mode = GameMode.menu
+   menu = require("mainmenu")()
 
    return setmetatable(
       {
