@@ -41,9 +41,15 @@ local function new()
    effect.crt.feather= 0.02
    effect.crt.distortionFactor = {1, 1.09}
 
-   -- mode = GameMode.gameplay
    mode = GameMode.menu
    menu = require("mainmenu")()
+
+   -- SFX
+   growth_sound = love.audio.newSource("sfx/growth.wav", "static")
+   jump_sound = love.audio.newSource("sfx/jump.wav", "static")
+   music = love.audio.newSource("sfx/bu-a-cannons-tunnel.it", "static")
+   music:setLooping(true)
+   music:play()
 
    return setmetatable(
       {
@@ -94,6 +100,7 @@ function Game:update(dt)
    for _, o in pairs(self.map.objects) do
       if o.is_active and self.player.body then
 	 if o.grow_to and o.body:isTouching(self.player.body) then
+	    growth_sound:play()
 	    camera:shake(10, 0.2, 60, 'XY')
 	    self.player:grow(o.grow_to)
 

@@ -166,8 +166,9 @@ function Player:update(dt)
       self.body:applyForce(self.character.force * -1, 0)
    end
 
-   if love.keyboard.isDown("up") and self.can_jump then
+   if love.keyboard.isDown("up") and self.character.jump_power > 0 and self.can_jump then
       self.can_jump = false
+      jump_sound:play()
       self.body:applyForce(0, self.character.jump_power * -1000)
    end
 end

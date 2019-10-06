@@ -63,19 +63,6 @@ local function new(world, index)
    for ldx, line in pairs(l_table) do
       ldx = ldx - 1
       for cdx, c in pairs(line) do
-	 -- labove = l_table[ldx - 1]
-	 -- lbelow = l_table[ldx + 1]
-	 -- if labove then
-	 --    babove = labove[cdx]
-	 -- end
-
-	 -- if lbelow then
-	 --    bbelow = lbelow[cdx]
-	 -- end
-
-	 -- bbefore = line[cdx - 1]
-	 -- bafter = line[cdx + 1]
-
 	 -- print(require "pl/pretty".dump(c))
 	 if c == "P" then
 	    player_pos.x = cdx * 32
@@ -150,9 +137,16 @@ local function new(world, index)
 	       txt.duration = 2
 	       txt.previsible = 0.5
 	       table.insert(object.txts, txt)
-	    elseif c == "3" then
+	       
 	       txt = {}
 	       txt.text = "Those unproportional potion \"bottles\" are not just decorative you know..."
+	       txt.duration = 4
+	       txt.previsible = 0.5
+	       table.insert(object.txts, txt)
+
+	    elseif c == "3" then
+	       txt = {}
+	       txt.text = "Ok. Looks like you got this..."
 	       txt.duration = 4
 	       txt.previsible = 0.5
 	       table.insert(object.txts, txt)
