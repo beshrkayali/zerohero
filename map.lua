@@ -203,12 +203,12 @@ local function new(world, index)
 	       txt.previsible = 0
 	       table.insert(object.txts, txt)
 	       txt = {}
-	       txt.text = "You're free to roam around"
+	       txt.text = "You're free roam and discover the empty world around you"
 	       txt.duration = 4
 	       txt.previsible = 0
 	       table.insert(object.txts, txt)
 	       txt = {}
-	       txt.text = "But you're free to discover the empty world around you"
+	       txt.text = "(There's not much to do)"
 	       txt.duration = 4
 	       txt.previsible = 0
 	       table.insert(object.txts, txt)
@@ -216,6 +216,15 @@ local function new(world, index)
 	       txt.text = "It must be pretty weird..."
 	       txt.duration = 4
 	       txt.previsible = 10
+	       table.insert(object.txts, txt)
+	       txt = {}
+	       txt.text = "If you look around, you might find some portals"
+	       txt.duration = 4
+	       txt.previsible = 10
+	       table.insert(object.txts, txt)
+	       txt.text = "There's really nothing left"
+	       txt.duration = 4
+	       txt.previsible = 20
 	       table.insert(object.txts, txt)
 	    end
 
