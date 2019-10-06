@@ -90,6 +90,7 @@ function Game:update(dt)
       camera:follow(self.player.x, self.player.y)
    end
 
+   -- Growth
    for _, o in pairs(self.map.objects) do
       if o.is_active and self.player.body then
 	 if o.grow_to and o.body:isTouching(self.player.body) then
@@ -100,9 +101,29 @@ function Game:update(dt)
 	       self.txtr:add_to_queue(txt.text, txt.previsible, txt.duration)
 	    end
 	    o.is_active = false
+
+	    o.body:setActive(false)
 	    o.body:destroy()
-	    o.body:release()
 	    o.shape:release()
+
+	    self.player.body:setLinearVelocity(0, 0)
+	    -- self.player.body:applyForce(0, 3 * -1000)
+	 end
+      end
+   end
+
+   -- Teleport gateways
+   for _, gs in pairs(self.map.gateways) do
+      
+      local g1 = gs[0]
+      local g2 = gs[1]
+
+      if self.player.body then
+	 if g1.body:isTouching(self.player.body) then
+	    self:teleport(g2.body:getX(), g2.body:getY())
+	 end
+	 if g2.body:isTouching(self.player.body) then
+	    self:teleport(g1.body:getX(), g1.body:getY())
 	 end
       end
    end
@@ -114,12 +135,26 @@ function Game:update(dt)
    end
 end
 
+function Game:teleport(dest_x, dest_y)
+   x, y = self.player.body:getLinearVelocity()
+   
+   self.player.x = dest_x + 40
+   self.player.y = dest_y
+   
+   self.player.body:setX(self.player.x)
+   self.player.body:setY(self.player.y)
+end
+			 
+
 function beginContact(a, b, coll)
    x,y = coll:getNormal()
    y = math.floor(y * 100 + 0.5) / 10;
    top_of_something = y <= -9
    player_touching_brick = a:getUserData() == "brick" and b:getUserData() == "player" or a:getUserData() == "player" and b:getUserData() == "brick"
    player.can_jump = player_touching_brick and top_of_something
+
+
+   
    -- if player.can_jump then
    --    camera:shake(1, 0.5, 60, 'XY')
    -- end

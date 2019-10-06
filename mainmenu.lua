@@ -28,10 +28,10 @@ function Menu:update()
 
    if love.keyboard.isDown("return") then
       camera:fade(
-	 3,
+	 1,
 	 {0, 0, 0, 1},
 	 function()
-	    camera:fade(3, {0, 0, 0, 0})
+	    camera:fade(1, {0, 0, 0, 0})
 	    self.active = false
 	 end
       )

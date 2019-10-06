@@ -41,8 +41,9 @@ function Player:setCharacter()
       character.idle = anim8.newAnimation(sprite_grid('1-1', 1), 0.1)
       character.walk = anim8.newAnimation(sprite_grid('2-4', 1), 0.1)
       character.circleSize = 5
-      character.force = 40
+      character.force = 30
       character.jump_power = 0
+
    elseif self.growth == 2 then
       local sprite = love.graphics.newImage(string.format("gfx/char_1.png"))
       local sprite_grid = anim8.newGrid(32, 32, sprite:getWidth(), sprite:getHeight())
@@ -52,6 +53,42 @@ function Player:setCharacter()
       character.circleSize = 5
       character.force = 40
       character.jump_power = 0.75
+   elseif self.growth == 3 then
+      local sprite = love.graphics.newImage(string.format("gfx/char_2.png"))
+      local sprite_grid = anim8.newGrid(32, 32, sprite:getWidth(), sprite:getHeight())
+      character.sprite = sprite
+      character.idle = anim8.newAnimation(sprite_grid('1-1', 1), 0.1)
+      character.walk = anim8.newAnimation(sprite_grid('2-4', 1), 0.1)
+      character.circleSize = 10
+      character.force = 100
+      character.jump_power = 2
+   elseif self.growth == 4 then
+      local sprite = love.graphics.newImage(string.format("gfx/char_2.png"))
+      local sprite_grid = anim8.newGrid(32, 32, sprite:getWidth(), sprite:getHeight())
+      character.sprite = sprite
+      character.idle = anim8.newAnimation(sprite_grid('1-1', 1), 0.1)
+      character.walk = anim8.newAnimation(sprite_grid('2-4', 1), 0.1)
+      character.circleSize = 10
+      character.force = 140
+      character.jump_power = 3
+   elseif self.growth == 5 then
+      local sprite = love.graphics.newImage(string.format("gfx/char_3.png"))
+      local sprite_grid = anim8.newGrid(32, 32, sprite:getWidth(), sprite:getHeight())
+      character.sprite = sprite
+      character.idle = anim8.newAnimation(sprite_grid('1-1', 1), 0.1)
+      character.walk = anim8.newAnimation(sprite_grid('2-4', 1), 0.1)
+      character.circleSize = 13
+      character.force = 200
+      character.jump_power = 6
+   elseif self.growth == 6 then
+      local sprite = love.graphics.newImage(string.format("gfx/char_4.png"))
+      local sprite_grid = anim8.newGrid(32, 32, sprite:getWidth(), sprite:getHeight())
+      character.sprite = sprite
+      character.idle = anim8.newAnimation(sprite_grid('1-4', 1), 0.1)
+      character.walk = anim8.newAnimation(sprite_grid('1-4', 1), 0.1)
+      character.circleSize = 16
+      character.force = 300
+      character.jump_power = 15
    end
 
    -- character.circleSize = 13

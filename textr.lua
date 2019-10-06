@@ -41,11 +41,11 @@ end
 function Textr:draw()
    if self.visible and self.text then
       love.graphics.setColor(1, 1, 1, 0.6)
-      love.graphics.rectangle("fill", 0, 135, 1000, 55 )
+      love.graphics.rectangle("fill", 0, 280, 1000, 55 )
 
       love.graphics.setFont(medium_font)
       love.graphics.setColor(0, 0, 0, 0.9)
-      love.graphics.printf(self.text, 0, 150, 1000, "center")
+      love.graphics.printf(self.text, 0, 295, 1000, "center")
    end
 end
 
