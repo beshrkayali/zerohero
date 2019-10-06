@@ -5,6 +5,7 @@ MS = require 'libs/moonshine'
 Camera = require 'libs/Camera'
 Map = require "map"
 Player = require "player"
+Textr = require "textr"
 
 local function new()
    -- World
@@ -18,11 +19,12 @@ local function new()
    camera:setFollowLead(10)
    camera:setFollowStyle('SCREEN_BY_SCREEN')
    
-   
    -- Map/Player
    map = Map(world, "1")
    player = Player(map.player_pos.x, map.player_pos.y, world)
+   txtr = Textr()
    player:grow(1)
+   txtr:show("Learning to jump would probably be useful...", 2, 4)
 
    -- Assets
    large_font = love.graphics.newFont('fonts/m6x11.ttf', 80)
@@ -42,7 +44,7 @@ local function new()
    mode = GameMode.gameplay
    -- mode = GameMode.menu
    -- menu = require("mainmenu")()
-   
+
    return setmetatable(
       {
 	 world=world,
@@ -51,6 +53,7 @@ local function new()
 	 player=player,
 	 mode=mode,
 	 menu=menu,
+	 txtr=txtr,
       },
       Game
    )
@@ -65,10 +68,11 @@ function Game:draw()
 	 if self.mode == GameMode.menu and self.menu then
 	    self.menu:draw()
 	 elseif self.mode == GameMode.gameplay then
-	    map:draw()
-	    player:draw()
+	    self.map:draw()
+	    self.player:draw()
 	 end
 	 camera:detach()
+	 self.txtr:draw()
 	 camera:draw()
    end)
 end
@@ -82,13 +86,19 @@ function Game:update(dt)
    elseif self.mode == GameMode.gameplay then
       self.map:update(dt)
       self.player:update(dt)
+      self.txtr:update(dt)
       camera:follow(self.player.x, self.player.y)
    end
 
    for _, o in pairs(self.map.objects) do
       if o.is_active and self.player.body then
 	 if o.grow_to and o.body:isTouching(self.player.body) then
+	    camera:shake(10, 0.2, 60, 'XY')
 	    self.player:grow(o.grow_to)
+
+	    for _, txt in pairs(o.txts) do
+	       self.txtr:add_to_queue(txt.text, txt.previsible, txt.duration)
+	    end
 	    o.is_active = false
 	    o.body:destroy()
 	    o.body:release()
@@ -110,9 +120,9 @@ function beginContact(a, b, coll)
    top_of_something = y <= -9
    player_touching_brick = a:getUserData() == "brick" and b:getUserData() == "player" or a:getUserData() == "player" and b:getUserData() == "brick"
    player.can_jump = player_touching_brick and top_of_something
-   if player.can_jump then
-      camera:shake(1, 0.5, 60, 'XY')
-   end
+   -- if player.can_jump then
+   --    camera:shake(1, 0.5, 60, 'XY')
+   -- end
 end
  
 function endContact(a, b, coll)
