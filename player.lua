@@ -114,15 +114,9 @@ function Player:grow(g)
    self.growth = g
    self:setCharacter()
    self:setPhysics()
-   print(string.format("Growth %s", self.growth))
 end
 
 function Player:draw()
-   if debug then
-      love.graphics.setColor(0.76, 0.18, 0.05, 0.8)
-      love.graphics.circle("fill", self.body:getX(), self.body:getY(), self.shape:getRadius())
-   end
-
    if self.hflip then
       xscale = -1
    else
@@ -142,12 +136,6 @@ function Player:draw()
       self.character.walk:draw(self.character.sprite, self.x, self.y, 0, xscale, yscale, 16, 16)
    else
       self.character.idle:draw(self.character.sprite, self.x, self.y, 0, xscale, yscale, 16, 16)
-   end
-
-   if debug then
-      love.graphics.setColor(0.28, 0.63, 0.05, 1)
-      love.graphics.setFont(medium_font)
-      love.graphics.print(string.format("Can jump: %s", self.can_jump), self.x - 50, self.y - 50)
    end
 end
 
