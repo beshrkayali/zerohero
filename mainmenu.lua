@@ -11,7 +11,7 @@ end
 function Menu:draw()
    love.graphics.setColor(1, 1, 1, 1)
    love.graphics.setFont(large_font)
-   love.graphics.printf("ZERO > HERO", 0, 60, 1000, "center")
+   love.graphics.printf("ZERO/HERO", 0, 60, 1000, "center")
    love.graphics.setFont(medium_font)
    love.graphics.printf("You are nothing", 0, 150, 1000, "center")
    love.graphics.printf("your goal is ", 0, 190, 1000, "center")

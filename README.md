@@ -1,3 +1,3 @@
-# Zero > Hero
+# Zero/Hero
 
 ![screenshot](screenshot.png)
