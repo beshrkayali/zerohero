@@ -86,9 +86,9 @@ function Player:setCharacter()
       character.sprite = sprite
       character.idle = anim8.newAnimation(sprite_grid('1-4', 1), 0.1)
       character.walk = anim8.newAnimation(sprite_grid('1-4', 1), 0.1)
-      character.circleSize = 16
-      character.force = 300
-      character.jump_power = 15
+      character.circleSize = 14
+      character.force = 230
+      character.jump_power = 8
    end
 
    -- character.circleSize = 13
